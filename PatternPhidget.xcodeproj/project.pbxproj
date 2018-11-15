@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560B021B486239B5DB36818C /* Pods_PatternPhidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5F5AF74F7C59FF0715CAC4 /* Pods_PatternPhidget.framework */; };
 		E3A20566219E18CB003A0746 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A20565219E18CB003A0746 /* AppDelegate.swift */; };
 		E3A20568219E18CB003A0746 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A20567219E18CB003A0746 /* ViewController.swift */; };
 		E3A2056B219E18CB003A0746 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3A20569219E18CB003A0746 /* Main.storyboard */; };
 		E3A2056D219E18CC003A0746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3A2056C219E18CC003A0746 /* Assets.xcassets */; };
 		E3A20570219E18CC003A0746 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3A2056E219E18CC003A0746 /* LaunchScreen.storyboard */; };
+		E3A2057A219E1DD3003A0746 /* PatternBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A20579219E1DD3003A0746 /* PatternBank.swift */; };
+		E3A2057C219E1EB6003A0746 /* PatternFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A2057B219E1EB6003A0746 /* PatternFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C5F5AF74F7C59FF0715CAC4 /* Pods_PatternPhidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PatternPhidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E41CC9BDC7E76EC08EFC841 /* Pods-PatternPhidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PatternPhidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-PatternPhidget/Pods-PatternPhidget.release.xcconfig"; sourceTree = "<group>"; };
 		E3A20562219E18CB003A0746 /* PatternPhidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PatternPhidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A20565219E18CB003A0746 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3A20567219E18CB003A0746 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		E3A2056C219E18CC003A0746 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3A2056F219E18CC003A0746 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3A20571219E18CC003A0746 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3A20579219E1DD3003A0746 /* PatternBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternBank.swift; sourceTree = "<group>"; };
+		E3A2057B219E1EB6003A0746 /* PatternFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternFunction.swift; sourceTree = "<group>"; };
+		F075288A2E30F198E5025B53 /* Pods-PatternPhidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PatternPhidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PatternPhidget/Pods-PatternPhidget.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560B021B486239B5DB36818C /* Pods_PatternPhidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D135E89F9B05D681794F5A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C5F5AF74F7C59FF0715CAC4 /* Pods_PatternPhidget.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C809FA5BBAD1BED7E54799EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F075288A2E30F198E5025B53 /* Pods-PatternPhidget.debug.xcconfig */,
+				9E41CC9BDC7E76EC08EFC841 /* Pods-PatternPhidget.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E3A20559219E18CB003A0746 = {
 			isa = PBXGroup;
 			children = (
 				E3A20564219E18CB003A0746 /* PatternPhidget */,
 				E3A20563219E18CB003A0746 /* Products */,
+				C809FA5BBAD1BED7E54799EB /* Pods */,
+				3D135E89F9B05D681794F5A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,6 +85,8 @@
 				E3A20565219E18CB003A0746 /* AppDelegate.swift */,
 				E3A20567219E18CB003A0746 /* ViewController.swift */,
 				E3A20569219E18CB003A0746 /* Main.storyboard */,
+				E3A20579219E1DD3003A0746 /* PatternBank.swift */,
+				E3A2057B219E1EB6003A0746 /* PatternFunction.swift */,
 				E3A2056C219E18CC003A0746 /* Assets.xcassets */,
 				E3A2056E219E18CC003A0746 /* LaunchScreen.storyboard */,
 				E3A20571219E18CC003A0746 /* Info.plist */,
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3A20574219E18CC003A0746 /* Build configuration list for PBXNativeTarget "PatternPhidget" */;
 			buildPhases = (
+				BC9E6DF2395E0030E4BC872E /* [CP] Check Pods Manifest.lock */,
 				E3A2055E219E18CB003A0746 /* Sources */,
 				E3A2055F219E18CB003A0746 /* Frameworks */,
 				E3A20560219E18CB003A0746 /* Resources */,
+				E721A633199B8A005564CA05 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +162,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BC9E6DF2395E0030E4BC872E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PatternPhidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E721A633199B8A005564CA05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PatternPhidget/Pods-PatternPhidget-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Phidget22Swift/Phidget22Swift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Phidget22Swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PatternPhidget/Pods-PatternPhidget-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3A2055E219E18CB003A0746 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A2057C219E1EB6003A0746 /* PatternFunction.swift in Sources */,
 				E3A20568219E18CB003A0746 /* ViewController.swift in Sources */,
+				E3A2057A219E1DD3003A0746 /* PatternBank.swift in Sources */,
 				E3A20566219E18CB003A0746 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +361,7 @@
 		};
 		E3A20575219E18CC003A0746 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F075288A2E30F198E5025B53 /* Pods-PatternPhidget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +379,7 @@
 		};
 		E3A20576219E18CC003A0746 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E41CC9BDC7E76EC08EFC841 /* Pods-PatternPhidget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

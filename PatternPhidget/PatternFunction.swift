@@ -12,12 +12,19 @@ import Phidget22Swift
 class patternFunction {
     
     let patternSequence : String
-//    var answer : Phidget
+    let answer1 : Bool
+    let answer2 : Bool
+    let answer3 : Bool
+    let answer4 : Bool
     
     
-    init (patternShownInLabel: String) {
-        patternSequence = patternShownInLabel
-//        answer = correctAnswer
+    init (patternForPlayer: String, playerAns1: Bool, playerAns2 : Bool, playerAns3 : Bool, playerAns4 : Bool) {
+        patternSequence = patternForPlayer
+        answer1 = playerAns1
+        answer2 = playerAns2
+        answer3 = playerAns3
+        answer4 = playerAns4
+        
     }
     
     

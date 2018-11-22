@@ -13,11 +13,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var patternLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     let buttonArray = [DigitalInput(), DigitalInput()]
     let ledArray = [DigitalOutput(), DigitalOutput()]
     
     let allPatterns = patternsss()
+    var questionPatternNumber : Int = 0
+    var score : Int = 0
+    var pickedAnswer1 : Bool = false
+    var pickedAnswer2 : Bool = false
+    var pickedAnswer3 : Bool = false
+    var pickedAnswer4 : Bool = false
+    var patternNumberTracker: Int = 0
+    
     
     
     
@@ -50,22 +59,39 @@ class ViewController: UIViewController {
     
     
     //STATE CHANGE FUNCTIONS
-    func state_change_button0(sender:DigitalInput, state:Bool){
+    
+    func state_change_button_Green(sender:DigitalInput, state:Bool){
         do{
-            if(state == true){
+            pickedAnswer1 = true
+            pickedAnswer2 = true
+            pickedAnswer3 = true
+            pickedAnswer4 = true
+            
+            if(state == true && patternNumberTracker == 0){
+                try ledArray[1].setState(true)
+                checkAnswer1()
+                patternNumberTracker = 1
+            }
                 
-                print("Red Button Pressed")
-                try ledArray[0].setState(true)
-                DispatchQueue.main.async {
-                    let firstPattern = self.allPatterns.list[1]
-                    self.patternLabel.text = firstPattern.patternSequence
-                }
-
-                
+            else if (state == true && patternNumberTracker == 1) {
+                try ledArray[1].setState(true)
+                checkAnswer2()
+                patternNumberTracker = 2
+            }
+            else if (state == true && patternNumberTracker == 2) {
+                try ledArray[1].setState(true)
+                checkAnswer3()
+                patternNumberTracker = 3
+            }
+            else if (state == true && patternNumberTracker == 3) {
+                try ledArray[1].setState(true)
+                checkAnswer4()
+                patternNumberTracker = 0
+                questionPatternNumber += 1
+                nextPattern()
             }
             else{
-                print("Red Button Released")
-                try ledArray[0].setState(false)
+                try ledArray[1].setState(false)
                 
             }
         } catch let err as PhidgetError {
@@ -75,16 +101,39 @@ class ViewController: UIViewController {
         }
     }
     
-    func state_change_button1(sender:DigitalInput, state:Bool){
+    func state_change_button_Red(sender:DigitalInput, state:Bool){
         do{
-            if(state == true){
-                    print("Green Button Pressed")
-                    try ledArray[1].setState(true)
-
+            pickedAnswer1 = false
+            pickedAnswer2 = false
+            pickedAnswer3 = false
+            pickedAnswer4 = false
+            
+            if(state == true && patternNumberTracker == 0){
+                try ledArray[1].setState(true)
+                checkAnswer1()
+                patternNumberTracker = 1
             }
+                
+            else if (state == true && patternNumberTracker == 1) {
+                try ledArray[1].setState(true)
+                checkAnswer2()
+                patternNumberTracker = 2
+            }
+            else if (state == true && patternNumberTracker == 2) {
+                try ledArray[1].setState(true)
+                checkAnswer3()
+                patternNumberTracker = 3
+            }
+            else if (state == true && patternNumberTracker == 3) {
+                try ledArray[1].setState(true)
+                checkAnswer4()
+                patternNumberTracker = 0
+                questionPatternNumber += 1
+                nextPattern()
+            }
+            
             else{
-                print("Green Button Released")
-                try ledArray[1].setState(false)
+                try ledArray[0].setState(false)
                 
             }
         } catch let err as PhidgetError {
@@ -97,7 +146,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        instructionLabel.text = "Press red button to start."
+        DispatchQueue.main.async {
+            let firstPattern = self.allPatterns.list[0]
+            self.patternLabel.text = firstPattern.patternSequence
+        }
     
         do {
             
@@ -124,8 +176,8 @@ class ViewController: UIViewController {
             }
             
             //OPENING OBJECTS
-            let _ = buttonArray[0].stateChange.addHandler(state_change_button0)
-            let _ = buttonArray[1].stateChange.addHandler(state_change_button1)
+            let _ = buttonArray[0].stateChange.addHandler(state_change_button_Red)
+            let _ = buttonArray[1].stateChange.addHandler(state_change_button_Green)
             
             
         } catch let err as PhidgetError {
@@ -135,30 +187,100 @@ class ViewController: UIViewController {
         }
     }
 
-//    func startUp (sender: DigitalInput, state: Bool) {
-//
-//
-//        if (state == true) {
-//
-//            let firstPattern = allPatterns.list[0]
-//            patternLabel.text = firstPattern.patternSequence
-//        } else {
-//
-//        }
-//    }
-    
-    func updateUI() {
-        patternLabel.text = "ooo"
-    }
-
-    
+   
     func nextPattern() {
         
+        if questionPatternNumber < 4 {
+            DispatchQueue.main.async {
+                self.patternLabel.text = self.allPatterns.list[self.questionPatternNumber].patternSequence
+                self.scoreLabel.text = ("Score: \(self.score)")
+            }
+        }
+            
+        else {
+            
+            let alert = UIAlertController(title: "Great job!", message: "You have finished the game! Do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction (title: "Restart", style: .default, handler: { (UIAlertAction) in
+                self.startOver()
+            })
+            
+            
+            alert.addAction(restartAction)
+            
+            present(alert, animated: true, completion: nil)
+        
+        }
+    }
+    
+    func startOver () {
+        questionPatternNumber = 0
+        score = 0
+        nextPattern()
+    }
+        
+        
+    func checkAnswer1() {
+        
+        let correctAnswer1 = allPatterns.list[questionPatternNumber].answer1
+        
+        if (pickedAnswer1 == correctAnswer1) {
+            print ("1 correct")
+        }
+        else {
+            print("1 wrong")
+            
+        }
+    }
+        
+    func checkAnswer2() {
+        let correctAnswer2 = allPatterns.list[questionPatternNumber].answer2
+        if (pickedAnswer2 == correctAnswer2) {
+            print ("2 correct")
+        }
+        else {
+            print("2 wrong")
+            
+        }
+    }
+            
+    func checkAnswer3() {
+        let correctAnswer3 = allPatterns.list[questionPatternNumber].answer3
+        if (pickedAnswer3 == correctAnswer3) {
+            print ("3 correct")
+        }
+        else {
+            print("3 wrong")
+            
+        }
+    }
+                
+    func checkAnswer4() {
+        let correctAnswer1 = allPatterns.list[questionPatternNumber].answer1
+        let correctAnswer2 = allPatterns.list[questionPatternNumber].answer2
+        let correctAnswer3 = allPatterns.list[questionPatternNumber].answer3
+        let correctAnswer4 = allPatterns.list[questionPatternNumber].answer4
+        
+        if (pickedAnswer4 == correctAnswer4) {
+            print ("4 correct")
+        }
+        else {
+            print("4 wrong")
+            
+            }
+    
+        
+        if (pickedAnswer1 == correctAnswer1 && pickedAnswer2 == correctAnswer2 && pickedAnswer3 == correctAnswer3 && pickedAnswer4 == correctAnswer4) {
+            score += 1
+            print("correct")
+        }
+        else {
+            print("no score lol")
+        }
         
     }
     
-    func checkAnswer() {
-        
-    }
+    
 }
+
 

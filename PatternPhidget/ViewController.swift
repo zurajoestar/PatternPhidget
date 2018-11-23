@@ -62,28 +62,32 @@ class ViewController: UIViewController {
     
     func state_change_button_Green(sender:DigitalInput, state:Bool){
         do{
-            pickedAnswer1 = true
-            pickedAnswer2 = true
-            pickedAnswer3 = true
-            pickedAnswer4 = true
+            
+            
+            
+            
             
             if(state == true && patternNumberTracker == 0){
+                pickedAnswer1 = true
                 try ledArray[1].setState(true)
                 checkAnswer1()
                 patternNumberTracker = 1
             }
                 
             else if (state == true && patternNumberTracker == 1) {
+                pickedAnswer2 = true
                 try ledArray[1].setState(true)
                 checkAnswer2()
                 patternNumberTracker = 2
             }
             else if (state == true && patternNumberTracker == 2) {
+                pickedAnswer3 = true
                 try ledArray[1].setState(true)
                 checkAnswer3()
                 patternNumberTracker = 3
             }
             else if (state == true && patternNumberTracker == 3) {
+                pickedAnswer4 = true
                 try ledArray[1].setState(true)
                 checkAnswer4()
                 patternNumberTracker = 0
@@ -103,28 +107,28 @@ class ViewController: UIViewController {
     
     func state_change_button_Red(sender:DigitalInput, state:Bool){
         do{
-            pickedAnswer1 = false
-            pickedAnswer2 = false
-            pickedAnswer3 = false
-            pickedAnswer4 = false
             
             if(state == true && patternNumberTracker == 0){
+                pickedAnswer1 = false
                 try ledArray[1].setState(true)
                 checkAnswer1()
                 patternNumberTracker = 1
             }
                 
             else if (state == true && patternNumberTracker == 1) {
+                pickedAnswer2 = false
                 try ledArray[1].setState(true)
                 checkAnswer2()
                 patternNumberTracker = 2
             }
             else if (state == true && patternNumberTracker == 2) {
+                pickedAnswer3 = false
                 try ledArray[1].setState(true)
                 checkAnswer3()
                 patternNumberTracker = 3
             }
             else if (state == true && patternNumberTracker == 3) {
+                pickedAnswer4 = false
                 try ledArray[1].setState(true)
                 checkAnswer4()
                 patternNumberTracker = 0
@@ -146,6 +150,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         DispatchQueue.main.async {
             let firstPattern = self.allPatterns.list[0]
             self.patternLabel.text = firstPattern.patternSequence
@@ -190,6 +195,8 @@ class ViewController: UIViewController {
    
     func nextPattern() {
         
+        
+        
         if questionPatternNumber < 4 {
             DispatchQueue.main.async {
                 self.patternLabel.text = self.allPatterns.list[self.questionPatternNumber].patternSequence
@@ -198,6 +205,11 @@ class ViewController: UIViewController {
         }
             
         else {
+            
+            DispatchQueue.main.async {
+                self.instructionLabel.text = "PRESS NO MORE!"
+                self.patternLabel.text = ""
+            }
             
             let alert = UIAlertController(title: "Great job!", message: "You have finished the game! Do you want to start over?", preferredStyle: .alert)
             
@@ -256,6 +268,7 @@ class ViewController: UIViewController {
     }
                 
     func checkAnswer4() {
+
         let correctAnswer1 = allPatterns.list[questionPatternNumber].answer1
         let correctAnswer2 = allPatterns.list[questionPatternNumber].answer2
         let correctAnswer3 = allPatterns.list[questionPatternNumber].answer3
@@ -265,21 +278,33 @@ class ViewController: UIViewController {
             print ("4 correct")
         }
         else {
+            
             print("4 wrong")
             
             }
     
+
         
         if (pickedAnswer1 == correctAnswer1 && pickedAnswer2 == correctAnswer2 && pickedAnswer3 == correctAnswer3 && pickedAnswer4 == correctAnswer4) {
-            score += 1
+//        if (correctAnswer1 == pickedAnswer1 && correctAnswer2 == pickedAnswer2 && correctAnswer3 == pickedAnswer3 && correctAnswer4 == pickedAnswer4) {
+            DispatchQueue.main.async {
+                self.instructionLabel.text = "Correct!"
+            }
+            score = score + 1
             print("correct")
         }
+            
         else {
             print("no score lol")
+            DispatchQueue.main.async {
+                self.instructionLabel.text = "Wrong!"
+            }
         }
+        
         
     }
     
+
     
 }
 

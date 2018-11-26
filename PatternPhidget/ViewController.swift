@@ -207,7 +207,7 @@ class ViewController: UIViewController {
         else {
             
             DispatchQueue.main.async {
-                self.instructionLabel.text = "PRESS NO MORE!"
+                self.instructionLabel.text = "Done!"
                 self.patternLabel.text = ""
             }
             
